@@ -1,35 +1,27 @@
-*.py[cod]
-
-# C extensions
-*.so
-
-# Packages
-*.egg
-*.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
-
-# Installer logs
-pip-log.txt
-
-# Unit test / coverage reports
-.coverage
-.tox
-nosetests.xml
-
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+#!/usr/bin/python 
+import Tkinter
+import RPi.GPIO as GPIO
+import time
+top = Tkinter.Tk()
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(12, GPIO.OUT)
+def accendi():
+    GPIO.output(12, True)
+def spegni():
+    GPIO.output(12, False)
+def pulsa():
+        GPIO.output(12, True)
+        time.sleep(0.5)
+        GPIO.output(12, False)
+        time.sleep(0.5)
+        GPIO.output(12, True)
+        time.sleep(0.5)
+        GPIO.output(12, False)
+B = Tkinter.Button(top, text = "ON", bg = "red", command = accendi)
+C = Tkinter.Button(top, text = "OFF", bg = "green", command = spegni)
+D = Tkinter.Button(top, text = "PULSA", bg = "yellow", command = pulsa)
+B.pack()
+C.pack()
+D.pack()
+top.mainloop()
